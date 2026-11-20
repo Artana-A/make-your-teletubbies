@@ -133,7 +133,7 @@ Contoh data Po:
   "color": "Red",
   "antenna": "Circular",
   "personality": "Cheerful",
-  "size": "Small"S
+  "size": "Small"
 }
 ```
 
@@ -167,6 +167,7 @@ Ganti `:id` dengan ID Teletubby yang ingin dicari.
 ```http
 PUT http://localhost:3000/api/teletubbies/:id
 ```
+Ganti `:id` dengan ID Teletubby yang ingin diupdate.
 
 Contoh request body:
 
