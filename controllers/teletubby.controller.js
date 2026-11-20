@@ -66,7 +66,47 @@ const getTeletubbyById = async (req, res) => {
                 message: 'Invalid Teletubby ID'
             });
         }
+
+        res.status(500).json({
+            message: error.message
+        });
+    }
+};
+
+// Update Teletubby by ID
+const updateTeletubbyById = async (req, res) => {
+    try {
+        const teletubby = await Teletubby.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        );
+
+        if (!teletubby) {
+            return res.status(404).json({
+                message: 'Teletubby not found'
+            });
+        }
+
+        res.status(200).json({
+            message: 'Teletubby updated successfully',
+            data: teletubby
+        });
+
+    } catch (error) {
         
+        if (error.name === 'CastError') {
+            return res.status(400).json({
+                message: 'Invalid Teletubby ID'
+            });
+        }
+
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({
+                message: error.message
+            });
+        }
+
         res.status(500).json({
             message: error.message
         });
@@ -76,5 +116,6 @@ const getTeletubbyById = async (req, res) => {
 module.exports = {
     createTeletubby,
     getAllTeletubbies,
-    getTeletubbyById
+    getTeletubbyById,
+    updateTeletubbyById,
 };
