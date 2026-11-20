@@ -4,7 +4,7 @@ Make Your Teletubbies adalah proyek REST API yang digunakan untuk membuat dan me
 
 Setiap teletubby memiliki lima atribut, yaitu nama, warna, bentuk antena, kepribadian, dan ukuran. Data tersebut divalidasi menggunakan Mongoose dan disimpan secara permanen di MongoDB.
 
-## Teknologi yang Digunakan
+## Tech Stack
 
 - Node.js – Runtime JavaScript.
 - Express.js – Framework untuk membangun REST API.
