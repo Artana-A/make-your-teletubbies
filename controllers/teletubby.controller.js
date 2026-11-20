@@ -113,9 +113,39 @@ const updateTeletubbyById = async (req, res) => {
     }
 };
 
+// Delete Teletubby by ID
+const deleteTeletubbyById = async (req, res) => {
+    try {
+        const teletubby = await Teletubby.findByIdAndDelete(req.params.id);
+
+        if (!teletubby) {
+            return res.status(404).json({
+                message: 'Teletubby not found'
+            });
+        }
+
+        res.status(200).json({
+            message: 'Teletubby deleted successfully',
+            data: teletubby
+        });
+
+    } catch (error) {
+        if (error.name === 'CastError') {
+            return res.status(400).json({
+                message: 'Invalid Teletubby ID'
+            });
+        }
+
+        res.status(500).json({
+            message: error.message
+        });
+    }
+};
+
 module.exports = {
     createTeletubby,
     getAllTeletubbies,
     getTeletubbyById,
     updateTeletubbyById,
+    deleteTeletubbyById
 };
